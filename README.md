@@ -1,7 +1,9 @@
 # BetonQuest GUI
 
 This is a commissioned port of [BetonQuest-gui](https://github.com/giovanni-bozzano/betonquest-gui) from 1.19.2 to 1.19.4.
+
 All credits for the original mod go to [giovanni-bozzano](https://github.com/giovanni-bozzano/).
+
 
 This client side Forge mod is designed to work with the BetonQuest Spigot plugin.
 
