@@ -25,7 +25,7 @@ public class WidgetButton extends Button
 
     public WidgetButton(int x, int y, int width, int height, Button.OnPress onPress, int type)
     {
-        super(x, y, width, height, CommonComponents.EMPTY, onPress);
+        super(x, y, width, height, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
         this.onPress = onPress;
         this.type = type;
     }
@@ -61,10 +61,10 @@ public class WidgetButton extends Button
 
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.vertex(this.x, this.y + this.height, this.getBlitOffset()).uv(0, 1).endVertex();
-        bufferBuilder.vertex(this.x + this.width, this.y + this.height, this.getBlitOffset()).uv(1, 1).endVertex();
-        bufferBuilder.vertex(this.x + this.width, this.y, this.getBlitOffset()).uv(1, 0).endVertex();
-        bufferBuilder.vertex(this.x, this.y, this.getBlitOffset()).uv(0, 0).endVertex();
+        bufferBuilder.vertex(this.getX(), this.getY() + this.height, unused).uv(0, 1).endVertex();
+        bufferBuilder.vertex(this.getX() + this.width, this.getY() + this.height, unused).uv(1, 1).endVertex();
+        bufferBuilder.vertex(this.getX() + this.width, this.getY(), unused).uv(1, 0).endVertex();
+        bufferBuilder.vertex(this.getX(), this.getY(), unused).uv(0, 0).endVertex();
 
         BufferUploader.drawWithShader(bufferBuilder.end());
     }

@@ -6,7 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.components.Widget;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -19,7 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
-public class WidgetChoice extends GuiComponent implements Widget, GuiEventListener, NarratableEntry
+public class WidgetChoice extends GuiComponent implements Renderable, GuiEventListener, NarratableEntry
 {
     private final int x;
     private final int y;
@@ -96,5 +96,17 @@ public class WidgetChoice extends GuiComponent implements Widget, GuiEventListen
     public interface IPressable
     {
         void onPress(WidgetChoice widgetChoice);
+    }
+
+    @Override
+    public void setFocused(boolean p_265728_) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setFocused'");
+    }
+
+    @Override
+    public boolean isFocused() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isFocused'");
     }
 }

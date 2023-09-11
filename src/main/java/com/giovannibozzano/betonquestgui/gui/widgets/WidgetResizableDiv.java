@@ -5,7 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.components.Widget;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 
 @OnlyIn(Dist.CLIENT)
-public class WidgetResizableDiv extends GuiComponent implements Widget
+public class WidgetResizableDiv extends GuiComponent implements Renderable
 {
     private static final ResourceLocation BORDER_TEXTURE = new ResourceLocation(BetonQuestGui.MOD_ID, "textures/gui/border.png");
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(BetonQuestGui.MOD_ID, "textures/gui/background.png");
@@ -126,10 +126,10 @@ public class WidgetResizableDiv extends GuiComponent implements Widget
 
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferBuilder.vertex(x, y + height, this.getBlitOffset()).uv(offsetX * f1, (offsetY + height) * f2).endVertex();
-        bufferBuilder.vertex(x + width, y + height, this.getBlitOffset()).uv((offsetX + width) * f1, (offsetY + height) * f2).endVertex();
-        bufferBuilder.vertex(x + width, y, this.getBlitOffset()).uv((offsetX + width) * f1, offsetY * f2).endVertex();
-        bufferBuilder.vertex(x, y, this.getBlitOffset()).uv(offsetX * f1, offsetY * f2).endVertex();
+        bufferBuilder.vertex(x, y + height, 0F).uv(offsetX * f1, (offsetY + height) * f2).endVertex();
+        bufferBuilder.vertex(x + width, y + height, 0F).uv((offsetX + width) * f1, (offsetY + height) * f2).endVertex();
+        bufferBuilder.vertex(x + width, y, 0F).uv((offsetX + width) * f1, offsetY * f2).endVertex();
+        bufferBuilder.vertex(x, y, 0F).uv(offsetX * f1, offsetY * f2).endVertex();
 
         BufferUploader.drawWithShader(bufferBuilder.end());
     }

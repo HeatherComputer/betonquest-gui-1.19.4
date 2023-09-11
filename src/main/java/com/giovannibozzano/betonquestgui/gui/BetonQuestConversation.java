@@ -9,7 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.StringSplitter;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.components.Widget;
+import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,12 +32,12 @@ public class BetonQuestConversation extends Screen
     private final static int BUTTON_DIMENSION = 10;
     private final static int STRING_BORDER = 10;
     private final static int STRING_HEIGHT = CONVERSATION_DIV_HEIGHT - STRING_BORDER;
-    private final List<Widget> objects = new ArrayList<>();
-    private final List<Widget> leftRows = new ArrayList<>();
-    private final List<Widget> rightRows = new ArrayList<>();
+    private final List<Renderable> objects = new ArrayList<>();
+    private final List<Renderable> leftRows = new ArrayList<>();
+    private final List<Renderable> rightRows = new ArrayList<>();
     private final MutableComponent leftText = Component.literal("");
     private final List<IndexedChoice> indexedChoices = new ArrayList<>();
-    private Widget header;
+    private Renderable header;
     private String npcName = "LOADING...";
     private boolean allowClose;
     private Component lastPlayerChoice;
@@ -185,15 +185,15 @@ public class BetonQuestConversation extends Screen
     @Override
     public void render(@Nonnull PoseStack matrixStack, int mouseX, int mouseY, float unused)
     {
-        this.renderBackground(matrixStack, 0);
+        this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, unused);
-        for (Widget object : this.objects) {
+        for (Renderable object : this.objects) {
             object.render(matrixStack, mouseX, mouseY, unused);
         }
-        for (Widget leftRow : this.leftRows) {
+        for (Renderable leftRow : this.leftRows) {
             leftRow.render(matrixStack, mouseX, mouseY, unused);
         }
-        for (Widget rightRow : this.rightRows) {
+        for (Renderable rightRow : this.rightRows) {
             rightRow.render(matrixStack, mouseX, mouseY, unused);
         }
         this.header.render(matrixStack, mouseX, mouseY, unused);
