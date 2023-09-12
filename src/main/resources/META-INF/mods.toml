@@ -9,9 +9,9 @@ modLoader="javafml" #mandatory
 loaderVersion="[43,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="All rights reserved"
+license="GPL" # as marked on the original github
 # A URL to refer people to when problems occur with this mod
-#issueTrackerURL="" #optional
+issueTrackerURL="https://github.com/MommyHeather/betonquest-gui-1.19.4/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -29,7 +29,7 @@ displayName="BetonQuest GUI" #mandatory
 # A text field displayed in the mod UI
 #credits="" #optional
 # A text field displayed in the mod UI
-authors="Giovanni Bozzano, Domenico De Luca" #optional
+authors="MommyHeather, Giovanni Bozzano, Domenico De Luca" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description="A GUI for BetonQuest"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
