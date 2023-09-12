@@ -28,6 +28,7 @@ public class WidgetButton extends Button
         super(x, y, width, height, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
         this.onPress = onPress;
         this.type = type;
+        this.alpha = 1F;
     }
 
     @Override

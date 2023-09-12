@@ -28,6 +28,7 @@ public class WidgetChoice extends GuiComponent implements Renderable, GuiEventLi
     private final int maximumWidth;
     private final int maximumHeight;
     private final WidgetChoice.IPressable onPress;
+    private boolean focused = true;
 
     public WidgetChoice(int x, int y, int mouseOverColor, RowList choice, int maximumWidth, int maximumHeight, WidgetChoice.IPressable onPress)
     {
@@ -58,9 +59,9 @@ public class WidgetChoice extends GuiComponent implements Renderable, GuiEventLi
         for (int row = 0; this.choice.getShift() + row < this.choice.getLinesAmount() && row - this.choice.getRowModifier() < this.maximumHeight / fontRenderer.lineHeight; row++) {
             Row textRow = this.choice.getRow(row);
             if (this.isMouseOver(mouseX, mouseY)) {
-                new WidgetRow(this.x, this.y + row * fontRenderer.lineHeight, this.mouseOverColor, textRow).render(matrixStack, mouseX, mouseY, unused);
+                new WidgetRow(this.x, this.y + row * fontRenderer.lineHeight, this.mouseOverColor, textRow).render(matrixStack, mouseX, mouseY, 1);
             } else {
-                new WidgetRow(this.x, this.y + row * fontRenderer.lineHeight, textRow).render(matrixStack, mouseX, mouseY, unused);
+                new WidgetRow(this.x, this.y + row * fontRenderer.lineHeight, textRow).render(matrixStack, mouseX, mouseY, 1);
             }
         }
     }
@@ -100,13 +101,11 @@ public class WidgetChoice extends GuiComponent implements Renderable, GuiEventLi
 
     @Override
     public void setFocused(boolean p_265728_) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setFocused'");
+        focused = p_265728_;
     }
 
     @Override
     public boolean isFocused() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isFocused'");
+        return focused;
     }
 }

@@ -38,15 +38,20 @@ public class CompassOverlay
 
     public static final IGuiOverlay COMPASS_OVERLAY = ((gui, mStack, partialTicks, screenWidth, screenHeight) ->
     {
-        if(BQGConfig.COMPASS.showCompass.get()){
+        if(BQGConfig.CONFIG.showCompass.get()){
+            int t = 0;
+            if (screenHeight >= 300) t=18;
             gui.setupOverlayRenderState(true, false);
+            mStack.translate(0, t, 0);
             renderCompass(gui, mStack, partialTicks, screenWidth, screenHeight);
+            mStack.translate(0, -t, 0);
         }
     });
 
     public static void renderCompass(Gui gui, PoseStack ms, float partialTicks, int screenWidth, int screenHeight)
     {
         int halfWidth = screenWidth / 2;
+        
 
         float cameraAngle = -Mth.wrapDegrees(Minecraft.getInstance().player.getYRot() + 90);
 
@@ -62,10 +67,10 @@ public class CompassOverlay
         drawString(ms, "S", (int) wrapDegrees(cameraAngle + 270), halfWidth);
         drawString(ms, "E", (int) wrapDegrees(cameraAngle + 180), halfWidth);
 
-        drawStringScaled(ms, "NW", (int) wrapDegrees(cameraAngle + 45), halfWidth, 0.8F);
-        drawStringScaled(ms, "NE", (int) wrapDegrees(cameraAngle + 135), halfWidth, 0.8F);
-        drawStringScaled(ms, "SE", (int) wrapDegrees(cameraAngle + 225), halfWidth, 0.8F);
-        drawStringScaled(ms, "SW", (int) wrapDegrees(cameraAngle + 315), halfWidth, 0.8F);
+        drawStringScaled(ms, "NW", (int) wrapDegrees(cameraAngle + 45), halfWidth, 1F);
+        drawStringScaled(ms, "NE", (int) wrapDegrees(cameraAngle + 135), halfWidth, 1F);
+        drawStringScaled(ms, "SE", (int) wrapDegrees(cameraAngle + 225), halfWidth, 1F);
+        drawStringScaled(ms, "SW", (int) wrapDegrees(cameraAngle + 315), halfWidth, 1F);
 
         if (marker_location != null)
         {
@@ -104,6 +109,12 @@ public class CompassOverlay
         if (Math.abs(viewDegree) > VIEWING_ANGLE / 2) {
             return;
         }
+        Component component = Component.literal(compassCardinal);
+        int i = Minecraft.getInstance().getWindow().getGuiScaledWidth();
+        int j = 12;
+        int j1 = j - 9;
+        int l = Minecraft.getInstance().font.width(component);
+        int i1 = i / 2 - l / 2;
         /* draw with shadow */
         //Gui.drawCenteredString(ms, Minecraft.getInstance().font, compassCardinal, halfWidth + getBarPosition(viewDegree, 155), POSY + 7, -1);
         Minecraft.getInstance().font.draw(ms, compassCardinal,
@@ -146,9 +157,9 @@ public class CompassOverlay
                 xBarPosition - (COMPASS_MARKER_X / 2), POSY + (COMPASS_MARKER_Y / 2), 200, 0, 0, COMPASS_MARKER_X, COMPASS_MARKER_Y, COMPASS_MARKER_X, COMPASS_MARKER_Y);
 
         /* Distance */
-        if(BQGConfig.COMPASS.showDistance.get())
+        if(BQGConfig.CONFIG.showDistance.get())
         {
-            String distance = distanceFromObjective + "b";
+            String distance = distanceFromObjective + "m";
             MutableComponent formattedDistance = Component.literal(distance).withStyle(ChatFormatting.WHITE);//.withStyle(ChatFormatting.BOLD);
             int stringWidth = Minecraft.getInstance().font.width(formattedDistance);
 
@@ -166,7 +177,7 @@ public class CompassOverlay
 
             }
 
-            float scale = 0.75F;
+            float scale = 1F;
             ps.pushPose();
             ps.scale(scale, scale, scale);
 
