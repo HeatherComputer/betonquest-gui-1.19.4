@@ -1,5 +1,6 @@
 package com.giovannibozzano.betonquestgui.gui;
 
+import com.giovannibozzano.betonquestgui.config.BQGConfig;
 import com.giovannibozzano.betonquestgui.gui.widgets.*;
 import com.giovannibozzano.betonquestgui.network.PacketHandler;
 import com.giovannibozzano.betonquestgui.network.packet.PacketCloseGui;
@@ -16,6 +17,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -55,6 +58,7 @@ public class BetonQuestConversation extends Screen
     {
         super(Component.literal(""));
     }
+
 
     @Override
     public void init()
@@ -122,6 +126,7 @@ public class BetonQuestConversation extends Screen
         this.rightShift = 0;
         this.reloadLeftRows();
         this.reloadRightRows();
+        
     }
 
     @Override
@@ -185,8 +190,10 @@ public class BetonQuestConversation extends Screen
     @Override
     public void render(@Nonnull PoseStack matrixStack, int mouseX, int mouseY, float unused)
     {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, unused);
+        if (BQGConfig.CONFIG.dimGame.get()) {
+            this.renderBackground(matrixStack);
+        }
+        //super.render(matrixStack, mouseX, mouseY, unused);
         for (Renderable object : this.objects) {
             object.render(matrixStack, mouseX, mouseY, unused);
         }
@@ -198,6 +205,7 @@ public class BetonQuestConversation extends Screen
         }
         this.header.render(matrixStack, mouseX, mouseY, unused);
     }
+  
 
     public void allowClose()
     {

@@ -7,34 +7,44 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class BQGConfig
 {
-    static final ForgeConfigSpec clientSpec;
-    public static final Compass COMPASS;
+    public static final ForgeConfigSpec clientSpec;
+    public static final Config CONFIG;
 
     static {
-        final Pair<Compass, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Compass::new);
+        final Pair<Config, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Config::new);
         clientSpec = specPair.getRight();
-        COMPASS = specPair.getLeft();
+        CONFIG = specPair.getLeft();
     }
 
     public static void register() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, clientSpec);
     }
 
-    public static class Compass
+    public static class Config
     {
         public final ForgeConfigSpec.BooleanValue showCompass;
         public final ForgeConfigSpec.BooleanValue showDistance;
 
-        Compass(ForgeConfigSpec.Builder builder)
+        
+        public final ForgeConfigSpec.BooleanValue dimGame;
+
+        Config(ForgeConfigSpec.Builder builder)
         {
             builder.push("BetonQuestGui");
             this.showCompass = builder
                     .comment("If true show the compass on screen")
                     .define("showCompass", true);
             this.showDistance = builder
-                    .comment("If ture show the distance from the quest marker")
+                    .comment("If true show the distance from the quest marker")
                     .define("showDistance", true);
+
+
+            
+            this.dimGame = builder
+                    .comment("Whether to dim the rest of the screen whilst in a conversation")
+                    .define("dimScreen", false);
             builder.pop();
         }
     }
+
 }
