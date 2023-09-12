@@ -4,6 +4,10 @@ This is a commissioned port of [BetonQuest-gui](https://github.com/giovanni-bozz
 
 All credits for the original mod go to [giovanni-bozzano](https://github.com/giovanni-bozzano/).
 
+## Changes from the 1.19.2 version:
+- Compass scales adjusted
+- Config value for screen dimming added
+- Autocommand to let you toggle ui
 
 This client side Forge mod is designed to work with the BetonQuest Spigot plugin.
 
