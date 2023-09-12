@@ -41,14 +41,14 @@ public class WidgetResizableDiv extends GuiComponent implements Renderable
 
     public WidgetResizableDiv(int x, int y, int width, int height)
     {
-        this(x, y, width, height, 0.5F, 0.5F, 0.5F, 0.5F);
+        this(x, y, width, height, 0.5F, 0.5F, 0.5F, 1F);
     }
 
     @Override
     public void render(@Nonnull PoseStack matrixStack, int mouseX, int mouseY, float f)
     {
         Minecraft minecraft = Minecraft.getInstance();
-        RenderSystem.setShaderColor(this.red, this.green, this.blue, this.alpha);
+        //RenderSystem.setShaderColor(this.red, this.green, this.blue, this.alpha);
         RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
         this.renderBackground(this.x + 6, this.y + 6, 0, 0, this.width - 12, this.height - 12);
         RenderSystem.setShaderTexture(0, BORDER_TEXTURE);
